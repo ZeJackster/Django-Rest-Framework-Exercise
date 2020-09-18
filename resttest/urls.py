@@ -23,8 +23,24 @@ from quickstart.models import Dogs, Breed
 
 #Sets the URLs that Django will use for the requests and assigns it a view
 urlpatterns = [
-    path('dogs/', views.DogList.as_view()),
-    path('dogs/<int:pk>/',views.DogDetail.as_view()),
-    path('breeds/',views.BreedList().as_view()),
-    path('breeds/<int:pk>/',views.BreedDetail.as_view()),
+    path(
+        'dogs/',
+        views.DogList.as_view(),
+        name='GET_POST_DogList'
+        ),
+    path(
+        'dogs/<int:pk>/',
+        views.DogDetail.as_view(),
+        name='GET_PUT_DELETE_DogDetail'
+        ),
+    path(
+        'breeds/',
+        views.BreedList().as_view(),
+        name='GET_POST_BreedList'
+        ),
+    path(
+        'breeds/<int:pk>/',
+        views.BreedDetail.as_view(),
+        name='GET_PUT_DELETE_Breed_Detail'
+        ),
 ]

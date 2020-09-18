@@ -50,7 +50,7 @@ class DogDetail(APIView):
 
 class BreedList(APIView):
     #get
-    def get(self, request, format=None):
+    def get(self, request, format='json'):
         breed = Breed.objects.all()
         serializer = BreedSerializer(breed, many=True)
         return Response(serializer.data)
