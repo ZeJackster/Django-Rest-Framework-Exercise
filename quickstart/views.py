@@ -28,12 +28,15 @@ class DogDetail(APIView):
         try:
             return Dogs.objects.get(id=pk)
         except Dogs.DoesNotExist:
-            raise Http404 
+            return None
     #get
     def get(self, request, pk, format=None):
         dogs = self.get_object(pk)
-        serializer = DogSerializer(dogs)
-        return Response(serializer.data)
+        if dogs == None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            serializer = DogSerializer(dogs)
+            return Response(serializer.data)
 
     #put
     def put(self, request, pk, format=None):
@@ -41,14 +44,17 @@ class DogDetail(APIView):
         serializer = DogSerializer(dogs, data=request.data)
         if serializer.is_valid():
             serializer.save
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     #delete
     def delete(self, request, pk, format=None):
         dogs = self.get_object(pk)
-        dogs.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if dogs == None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            dogs.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 class BreedList(APIView):
     #get
@@ -85,11 +91,14 @@ class BreedDetail(APIView):
         serializer = BreedSerializer(breed, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     #delete
     def delete(self, request, pk, format=None):
         breed = self.get_object(pk)
-        breed.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if breed == None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            breed.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
