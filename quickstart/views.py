@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -67,13 +68,16 @@ class BreedDetail(APIView):
         try:
             return Breed.objects.get(id=pk)
         except Breed.DoesNotExist: 
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return None
 
     #get
     def get(self, request, pk, format=None):
         breed = self.get_object(pk)
-        serializer = BreedSerializer(breed)
-        return Response(serializer.data)
+        if breed == None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            serializer = BreedSerializer(breed)
+            return Response(serializer.data)
 
     #put
     def put(self, request, pk, format=None):
