@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+
 # Create your views here.
 
 class DogList(APIView):
@@ -26,7 +27,7 @@ class DogDetail(APIView):
         try:
             return Dogs.objects.get(id=pk)
         except Dogs.DoesNotExist:
-            raise Http404
+            raise Http404 
     #get
     def get(self, request, pk, format=None):
         dogs = self.get_object(pk)
@@ -66,7 +67,8 @@ class BreedDetail(APIView):
         try:
             return Breed.objects.get(id=pk)
         except Breed.DoesNotExist: 
-            raise Http404
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
     #get
     def get(self, request, pk, format=None):
         breed = self.get_object(pk)
