@@ -152,7 +152,7 @@ $ pip install pipenv
 
 Create a virtual environment
 ```
-$ python3 -m venv env
+$ python -m venv env
 ```
 
 There should be a folder called env now<br>
@@ -168,7 +168,7 @@ $ cd testfolder
 
 From here, install the packages from the requirements.txt
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 Start the environment
@@ -176,9 +176,11 @@ Start the environment
 $ python manage.py runserver
 ```
 
+From here, you should be able to go to your browser, type in http://localhost:8000/dogs/ and see a return of the original get request.<br>
+Once you are done with the environment, press CTRL+C to close it.
 
 # Tests
-
+While the server is active, go to the project root folder and run the `python manage.py test` command to run the unit tests to ensure everything is working
 
 # How to use?
 ### Breeds Requests
@@ -194,13 +196,16 @@ Note: pk is the ID which can be retrieved with GET ALL request
 * CREATE NEW - Create a new dog by using a `POST` request to the `/dogs/` endpoint 
 * GET ONE - Get the details for a single dog by using a `GET` request to the `/dogs/<int:pk>/` endpoint
 * UPDATE ONE - Update a dog with a `PUT` request to `/dogs/<int:pk>/` endpoint
-* DELETE ONE - Delete a dog wiht a `DELETE` request to `/dogs/<int:pk>/` endpoint
+* DELETE ONE - Delete a dog with a `DELETE` request to `/dogs/<int:pk>/` endpoint
 Note: pk is the ID which can be retrieved by the GET ALL request
 
 # Contribute
 Suggestions on how to improve code along with an explanation of how is always appreciated
 
 # Credits
-
+@MLHale for creating the exercise
+https://mlhale.github.io/CYBR8470/modules/building-a-server/django-exercise.html
 
 # License
+Django: Copyright (c) Django Software Foundation and individual contributors.
+Django REST Framework: Copyright © 2011-present, Encode OSS Ltd. All rights reserved.
