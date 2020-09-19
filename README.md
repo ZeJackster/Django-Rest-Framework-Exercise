@@ -5,7 +5,7 @@ This project is the design and function of a REST API using Django's framework
 The motivation for the project is to learn how to use the Django REST Framework
 
 # Build Status
-![.github/workflows/main.yml](https://github.com/ZeJackster/Django-Rest-Framework-Exercise/workflows/.github/workflows/main.yml/badge.svg?branch=master)
+![Django Server Test](https://github.com/ZeJackster/Django-Rest-Framework-Exercise/workflows/Django%20Server%20Test/badge.svg)
 
 # Frameworks Used
 Python 3.8.5<br>
