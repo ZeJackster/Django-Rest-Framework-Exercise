@@ -27,16 +27,16 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}}
-    - name: Installing Pipenv
-      run: |
-        python -m pip install --upgrade pip
-        sudo pip install pipenv
-    - name: Installing Requirements from pipfile
-      run: |
-        pipenv install
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}}
+      - name: Installing Pipenv
+        run: |
+          python -m pip install --upgrade pip
+          sudo pip install pipenv
+      - name: Installing Requirements from pipfile
+        run: |
+          pipenv install
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
