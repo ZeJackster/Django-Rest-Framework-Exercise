@@ -208,5 +208,5 @@ Suggestions on how to improve code along with an explanation of how is always ap
 https://mlhale.github.io/CYBR8470/modules/building-a-server/django-exercise.html
 
 # License
-Django: Copyright (c) Django Software Foundation and individual contributors.
+Django: Copyright (c) Django Software Foundation and individual contributors.<br>
 Django REST Framework: Copyright © 2011-present, Encode OSS Ltd. All rights reserved.
