@@ -29,7 +29,8 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
         with:
-          python-version: ${{ matrix.python-version }}}
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
       - name: Installing Pipenv
         run: |
           python -m pip install --upgrade pip
