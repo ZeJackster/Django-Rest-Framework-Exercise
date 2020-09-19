@@ -8,12 +8,12 @@ The motivation for the project is to learn how to use the Django REST Framework
 Build Status == Passing
 
 # Frameworks Used
-Django<br>
-Django REST Framework
+Django 3.1.1 <br>
+Django REST Framework 3.11.0
 
 # Features
-*GET and POST requests to the `/breeds/` endpoint, and the `/dogs/` endpoint
-*GET, PUT, and DELETE requests to the `/breeds/{int:pk}/` endpoint, and the `/dogs/{int:pk}` endpoint
+* GET and POST requests to the `/breeds/` endpoint, and the `/dogs/` endpoint
+* GET, PUT, and DELETE requests to the `/breeds/{int:pk}/` endpoint, and the `/dogs/{int:pk}` endpoint
 
 # Code Example
 models.py
@@ -130,16 +130,53 @@ class GetAllDogsTest(TestCase):
 ```
 
 # Installation
-On Windows OS, ensure you have the python installed
+On Windows OS, ensure you have the python 3.8.5 installed<br>
+Python can be downloaded from the following link https://www.python.org/downloads/ <br>
+When launching Python.exe to install it, ensure you lick 'Add Python to Environment Variables'
+Download the project to your desired project folder<br>
+
 Open PowerShell and navigate to the directory you want to download the project
 ```
+$ cd /path/to/desired/folder/
+```
 
+Use pip to install virtualenv
+```
+$ pip install virtualenv
+```
+
+Use pip to install pipenv
+```
+$ pip install pipenv
+```
+
+Create a virtual environment
+```
+$ python3 -m venv env
+```
+
+There should be a folder called env now<br>
+Run the following command to start the environemnt
+```
+$ env\Scripts\activate
+```
+
+Navigated to the folder that was downloaded
+```
+$ cd testfolder
+```
+
+From here, install the packages from the requirements.txt
+```
+pip install -r requirements.txt
+```
+
+Start the environment
+```
+$ python manage.py runserver
 ```
 
 
-```
-python3 -m venv env
-```
 # Tests
 
 
