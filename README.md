@@ -8,7 +8,8 @@ The motivation for the project is to learn how to use the Django REST Framework
 Build Status == Passing
 
 # Frameworks Used
-Django 3.1.1 <br>
+Python 3.8.5<br>
+Django 3.1.1<br>
 Django REST Framework 3.11.0
 
 # Features
