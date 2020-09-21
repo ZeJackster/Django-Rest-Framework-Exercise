@@ -56,15 +56,47 @@ class CreateNewBreedTest(TestCase):
             'sheddingamount':'5',
             'exerciseneeds':'1'
         }
-        self.invalid_paylod = {
+        self.invalid_paylod_size = {
             'name':'Hound',
             'size':'Extra Large',
-            'friendliness':'0',
-            'trainability':'0',
-            'sheddingamount':'0',
-            'exerciseneeds':'0'
+            'friendliness':'4',
+            'trainability':'3',
+            'sheddingamount':'1',
+            'exerciseneeds':'2'
         }
-    
+        self.invalid_paylod_friendliness = {
+            'name':'Hound',
+            'size':'Extra Large',
+            'friendliness':'4',
+            'trainability':'3',
+            'sheddingamount':'1',
+            'exerciseneeds':'2'
+        }
+        self.invalid_paylod_trainability = {
+            'name':'Hound',
+            'size':'Extra Large',
+            'friendliness':'4',
+            'trainability':'3',
+            'sheddingamount':'1',
+            'exerciseneeds':'2'
+        }
+        self.invalid_paylod_sheddingamount = {
+            'name':'Hound',
+            'size':'Extra Large',
+            'friendliness':'4',
+            'trainability':'3',
+            'sheddingamount':'1',
+            'exerciseneeds':'2'
+        }
+        self.invalid_paylod_exerciseneeds = {
+            'name':'Hound',
+            'size':'Extra Large',
+            'friendliness':'4',
+            'trainability':'3',
+            'sheddingamount':'1',
+            'exerciseneeds':'2'
+        }
+
     def test_create_valid_breed(self):
         response = client.post(
             reverse('GET_POST_BreedList'),
@@ -73,10 +105,39 @@ class CreateNewBreedTest(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
-    def test_create_invalid_breed(self):
+    def test_create_invalid_breed_size(self):
         response = client.post(
             reverse('GET_POST_BreedList'),
-            data = json.dumps(self.invalid_paylod),
+            data = json.dumps(self.invalid_paylod_size),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_invalid_breed_friendliness(self):
+        response = client.post(
+            reverse('GET_POST_BreedList'),
+            data = json.dumps(self.invalid_paylod_friendliness),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    def test_create_invalid_breed_trainabilty(self):
+        response = client.post(
+            reverse('GET_POST_BreedList'),
+            data = json.dumps(self.invalid_paylod_trainability),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    def test_create_invalid_breed_sheddingamount(self):
+        response = client.post(
+            reverse('GET_POST_BreedList'),
+            data = json.dumps(self.invalid_paylod_sheddingamount),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    def test_create_invalid_breed_exercise(self):
+        response = client.post(
+            reverse('GET_POST_BreedList'),
+            data = json.dumps(self.invalid_paylod_exerciseneeds),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -147,15 +208,46 @@ class UpdateSingleBreedTest(TestCase):
             'sheddingamount':'2',
             'exerciseneeds':'1',
         }
-        self.invalid_payload = {
+        self.invalid_payload_size = {
             'name':'Great Dane',
             'size':'Very Large',
             'friendliness':'4',
             'trainability':'1',
+            'sheddingamount':'5',
+            'exerciseneeds':'1',
+        }
+        self.invalid_payload_friendliness = {
+            'name':'Great Dane',
+            'size':'Large',
+            'friendliness':'6',
+            'trainability':'1',
+            'sheddingamount':'5',
+            'exerciseneeds':'1',
+        }
+        self.invalid_payload_trainability = {
+            'name':'Great Dane',
+            'size':'Large',
+            'friendliness':'4',
+            'trainability':'0',
+            'sheddingamount':'5',
+            'exerciseneeds':'1',
+        }
+        self.invalid_payload_sheddingamount = {
+            'name':'Great Dane',
+            'size':'Large',
+            'friendliness':'3',
+            'trainability':'1',
             'sheddingamount':'6',
             'exerciseneeds':'1',
         }
-
+        self.invalid_payload_exerciseneeds = {
+            'name':'Great Dane',
+            'size':'Large',
+            'friendliness':'3',
+            'trainability':'1',
+            'sheddingamount':'5',
+            'exerciseneeds':'0',
+        }
     def test_valid_update_breed(self):
         response = client.put(
             reverse('GET_PUT_DELETE_Breed_Detail', kwargs={'pk':self.dachshund.pk}),
@@ -164,14 +256,46 @@ class UpdateSingleBreedTest(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_invalid_update_breed(self):
+    def test_invalid_update_breed_size(self):
         response = client.put(
             reverse('GET_PUT_DELETE_Breed_Detail', kwargs={'pk':self.dane.pk}),
-            data=json.dumps(self.invalid_payload),
+            data=json.dumps(self.invalid_payload_size),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_invalid_update_breed_friendliness(self):
+        response = client.put(
+            reverse('GET_PUT_DELETE_Breed_Detail', kwargs={'pk':self.dane.pk}),
+            data=json.dumps(self.invalid_payload_friendliness),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_invalid_update_breed_trainability(self):
+        response = client.put(
+            reverse('GET_PUT_DELETE_Breed_Detail', kwargs={'pk':self.dane.pk}),
+            data=json.dumps(self.invalid_payload_trainability),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_invalid_update_breed_sheddingamount(self):
+        response = client.put(
+            reverse('GET_PUT_DELETE_Breed_Detail', kwargs={'pk':self.dane.pk}),
+            data=json.dumps(self.invalid_payload_sheddingamount),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_invalid_update_breed_exerciseneeds(self):
+        response = client.put(
+            reverse('GET_PUT_DELETE_Breed_Detail', kwargs={'pk':self.dane.pk}),
+            data=json.dumps(self.invalid_payload_exerciseneeds),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
 class DeleteSingleBreedTest(TestCase):
     """Test case for deleting a single breed of dogs"""
     
@@ -207,30 +331,30 @@ class GetAllDogsTest(TestCase):
         greatDane = Breed.objects.create(
             name='Great Dane',
             size='Large',
-            friendliness='4',
-            trainability='1',
-            sheddingamount='2',
-            exerciseneeds='4'
+            friendliness=4,
+            trainability=1,
+            sheddingamount=2,
+            exerciseneeds=4
         )        
         chineseCrested = Breed.objects.create(
             name='Chinese Crested',
             size='Small',
-            friendliness='4',
-            trainability='2',
-            sheddingamount='1',
-            exerciseneeds='2'
+            friendliness=4,
+            trainability=2,
+            sheddingamount=1,
+            exerciseneeds=2
         )
         corgi = Breed.objects.create(
             name='Corgi',
             size='Medium',
-            friendliness='5',
-            trainability='3',
-            sheddingamount='2',
-            exerciseneeds='3'
+            friendliness=5,
+            trainability=3,
+            sheddingamount=2,
+            exerciseneeds=3
         )
         Dogs.objects.create(
             name='Molly',
-            age='10',
+            age=10,
             breed=greatDane,
             gender='Female',
             color='Gray',
@@ -239,7 +363,7 @@ class GetAllDogsTest(TestCase):
         )
         Dogs.objects.create(
             name='Hairy',
-            age='2',
+            age=2,
             breed=chineseCrested,
             gender='Male',
             color='White',
@@ -248,7 +372,7 @@ class GetAllDogsTest(TestCase):
         )
         Dogs.objects.create(
             name='Dorky',
-            age='5',
+            age=5,
             breed=corgi,
             gender='Male',
             color='Beige',
@@ -270,18 +394,18 @@ class CreateNewDogTest(TestCase):
         beagle = Breed.objects.create(
             name='Beagle',
             size='Small',
-            friendliness='4',
-            trainability='2',
-            sheddingamount='3',
-            exerciseneeds='2'
+            friendliness=4,
+            trainability=2,
+            sheddingamount=3,
+            exerciseneeds=2
         )
         basset = Breed.objects.create(
             name='Basset Hound',
             size='medium',
-            friendliness='3',
-            trainability='3',
-            sheddingamount='3',
-            exerciseneeds='3',
+            friendliness=3,
+            trainability=3,
+            sheddingamount=3,
+            exerciseneeds=3,
         )
         self.valid_payload = {
             'name':'Ginger',
@@ -292,10 +416,19 @@ class CreateNewDogTest(TestCase):
             'favouritefood':'Ice Cream',
             'favouritetoy':'shoes'
         }
-        self.invalid_payload = {
+        self.invalid_payload_age = {
             'name':'Lady',
-            'age':'500',
-            'breed':'Underdog',
+            'age':'Ten',
+            'breed':'Basset Hound',
+            'gender':'Female',
+            'color':'Beige',
+            'favouritefood':'Bones',
+            'favouritetoy':'Beachball'
+        }
+        self.invalid_payload_breed = {
+            'name':'Lady',
+            'age':'5',
+            'breed':'Unknown',
             'gender':'Female',
             'color':'Beige',
             'favouritefood':'Bones',
@@ -310,10 +443,17 @@ class CreateNewDogTest(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
-    def test_create_invalid_dog(self):
+    def test_create_invalid_dog_age(self):
         response = client.post(
             reverse('GET_POST_DogList'),
-            data = json.dumps(self.invalid_payload),
+            data = json.dumps(self.invalid_payload_age),
+            content_type='application/json',
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    def test_create_invalid_dog_breed(self):
+        response = client.post(
+            reverse('GET_POST_DogList'),
+            data = json.dumps(self.invalid_payload_breed),
             content_type='application/json',
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -372,22 +512,22 @@ class UpdateSingleDog(TestCase):
         jackRussel = Breed.objects.create(
             name='Jack Russel Terrier',
             size='Small',
-            friendliness='5',
-            trainability='2',
-            sheddingamount='3',
-            exerciseneeds='4'
+            friendliness=5,
+            trainability=2,
+            sheddingamount=3,
+            exerciseneeds=4
         )
         dalmation = Breed.objects.create(
             name='Dalmation',
             size='Large',
-            friendliness='4',
-            trainability='5',
-            sheddingamount='2',
-            exerciseneeds='3'
+            friendliness=4,
+            trainability=5,
+            sheddingamount=2,
+            exerciseneeds=3
         )
         self.jack = Dogs.objects.create(
             name='Jack',
-            age='4',
+            age=4,
             breed=jackRussel,
             gender='Male',
             color='Tan and White',
@@ -396,7 +536,7 @@ class UpdateSingleDog(TestCase):
         )
         self.smoky = Dogs.objects.create(
             name='Smoky',
-            age='6',
+            age=6,
             breed=dalmation,
             gender='Female',
             color='Black and White',
@@ -412,16 +552,25 @@ class UpdateSingleDog(TestCase):
             'favouritefood':'Smoked Meat',
             'favouritetoy':'Fire Hat'
         }
-        self.invalid_payload = {
+        self.invalid_payload_age = {
+            'name':'Jack',
+            'age':'40000',
+            'breed':'Jack Russel Terrier',
+            'gender':'Male',
+            'color':'Brown and White',
+            'favouritefood':'Pasta',
+            'favouritetoy':'Chew Toy'
+        }
+        self.invalid_payload_breed = {
             'name':'Jack',
             'age':'4',
             'breed':'Turkey',
             'gender':'Male',
             'color':'Brown and White',
             'favouritefood':'Pasta',
-            'favouritetoy':''
+            'favouritetoy':'Chew Toy'
         }
-    def test_valid_update_breed(self):
+    def test_valid_update_dog(self):
         response = client.put(
             reverse('GET_PUT_DELETE_DogDetail', kwargs={'pk':self.smoky.pk}),
             data=json.dumps(self.valid_payload),
@@ -429,10 +578,18 @@ class UpdateSingleDog(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_invalid_update_breed(self):
+    def test_invalid_update_dog_age(self):
         response = client.put(
             reverse('GET_PUT_DELETE_DogDetail', kwargs={'pk':self.jack.pk}),
-            data=json.dumps(self.invalid_payload),
+            data=json.dumps(self.invalid_payload_age),
+            content_type='application/json'
+        )
+        self.assertEqual(response.data['age'], self.jack.age)
+    
+    def test_invalid_update_dog_breed(self):
+        response = client.put(
+            reverse('GET_PUT_DELETE_DogDetail', kwargs={'pk':self.jack.pk}),
+            data=json.dumps(self.invalid_payload_breed),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

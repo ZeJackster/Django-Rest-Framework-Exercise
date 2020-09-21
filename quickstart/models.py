@@ -13,7 +13,7 @@ class Breed(models.Model):
 #Dogs Model as requested in the exercise
 class Dogs(models.Model):
     name = models.CharField(max_length=100)
-    age = models.IntegerField()
+    age = models.IntegerField(max_length=2)
     breed = models.ForeignKey(Breed, related_name="breed_name", on_delete=models.CASCADE)
     gender = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
