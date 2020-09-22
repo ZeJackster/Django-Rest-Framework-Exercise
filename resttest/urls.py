@@ -21,26 +21,26 @@ from quickstart import views
 from quickstart.models import Dogs, Breed
 
 
-#Sets the URLs that Django will use for the requests and assigns it a view
+# Sets the URLs that Django will use for the requests and assigns it a view
 urlpatterns = [
     path(
         'dogs/',
-        views.DogList.as_view(),
+        views.DogList.as_view({'get': 'list', 'post': 'create'}),
         name='GET_POST_DogList'
         ),
     path(
         'dogs/<int:pk>/',
-        views.DogDetail.as_view(),
+        views.DogDetail.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}),
         name='GET_PUT_DELETE_DogDetail'
         ),
     path(
         'breeds/',
-        views.BreedList().as_view(),
+        views.BreedList.as_view({'get': 'list', 'post': 'create'}),
         name='GET_POST_BreedList'
         ),
     path(
         'breeds/<int:pk>/',
-        views.BreedDetail.as_view(),
+        views.BreedDetail.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}),
         name='GET_PUT_DELETE_Breed_Detail'
         ),
 ]
